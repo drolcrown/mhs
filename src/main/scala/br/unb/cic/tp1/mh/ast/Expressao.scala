@@ -4,5 +4,3 @@ trait Expressao {
   def avaliar() : Valor
 }
 
-abstract class ExpBinaria(val lhs : Expressao, val rhs : Expressao)
-  extends Expressao

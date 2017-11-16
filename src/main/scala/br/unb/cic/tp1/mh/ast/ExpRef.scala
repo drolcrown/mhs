@@ -2,8 +2,17 @@ package br.unb.cic.tp1.mh.ast
 
 import br.unb.cic.tp1.mh.memoria.Ambiente
 
-class ExpRef(val variavel : String) extends Expressao{
+import br.unb.cic.tp1.exceptions.VariavelNaoDeclaradaException
 
-  override def avaliar(): Valor = Ambiente.consulta(variavel)
+case class ExpRef(variavel : String) extends Expressao {
+
+  override def avaliar(): Valor = {
+    try {
+      return Ambiente.consulta(variavel)
+    }
+    catch {
+      case ex: NoSuchElementException => throw VariavelNaoDeclaradaException()
+    }
+  } 
 
 }

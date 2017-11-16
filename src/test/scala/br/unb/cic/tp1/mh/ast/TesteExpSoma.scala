@@ -8,9 +8,11 @@ class TesteExpSoma extends FlatSpec with Matchers {
     val val5  = ValorInteiro(5)
     val val10 = ValorInteiro(10)
 
-    val soma = new ExpSoma(val5, val10)
+    val soma = ExpSoma(val5, val10)
 
     soma.avaliar() should be (ValorInteiro(15))
   }
+
+ 
 
 }

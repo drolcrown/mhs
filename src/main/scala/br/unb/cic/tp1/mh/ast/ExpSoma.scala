@@ -1,6 +1,6 @@
 package br.unb.cic.tp1.mh.ast
 
-class ExpSoma(lhs : Expressao, rhs : Expressao) extends ExpBinaria(lhs, rhs) {
+case class ExpSoma(lhs : Expressao, rhs : Expressao) extends Expressao {
 
   override def avaliar(): Valor = {
     val v1 = lhs.avaliar().asInstanceOf[ValorInteiro]
