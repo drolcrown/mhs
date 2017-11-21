@@ -10,10 +10,12 @@ case class ExpAplicacaoLambda(exp1 : Expressao, exp2 : Expressao) extends Expres
     val v1 = exp1.avaliar()
 
     v1 match {
-      case Closure(v, c) => {
-        val v2 = exp2.avaliar()
-	Ambiente.atualiza(v, v2)
-	return c.avaliar()
+      case Closure(v, c, ambiente) => {
+        Ambiente.novoAmbiente(ambiente)
+        Ambiente.atualiza(v, exp2.avaliar())
+	      val res =  c.avaliar()
+        Ambiente.removeAmbiente()
+        return res
       }
       
       case _             => throw ExpressaoInvalida()

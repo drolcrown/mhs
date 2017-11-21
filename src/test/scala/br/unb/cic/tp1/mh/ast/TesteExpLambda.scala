@@ -13,7 +13,9 @@ class TesteExpLambda extends FlatSpec with Matchers {
       new ExpSoma(new ExpRef("x"), ValorInteiro(1)))
 
 
-    inc.avaliar() should be (Closure("x", new ExpSoma(new ExpRef("x"), ValorInteiro(1))))
+    val closure = inc.avaliar().asInstanceOf[Closure]
+    closure.id should be ("x")
+    closure.corpo should be (new ExpSoma(new ExpRef("x"), ValorInteiro(1)))
   }
 
 }
