@@ -1,13 +1,26 @@
 package br.unb.cic.tp1.mh.memoria
 
 import br.unb.cic.tp1.exceptions.VariavelNaoDeclaradaException
-import br.unb.cic.tp1.mh.ast.Valor
+import br.unb.cic.tp1.mh.ast.{DecFuncao, Valor}
 
 import scala.collection.mutable
 
 object Ambiente {
 
-  val stack = new mutable.Stack[mutable.HashMap[String, Valor]]()
+  private val stack = new mutable.Stack[mutable.HashMap[String, Valor]]()
+
+  private val funcoesDeclaradas = new mutable.HashMap[String, DecFuncao]
+
+  def iniciar(): Unit = {
+    stack.clear()
+    stack.push(new mutable.HashMap[String, Valor]())
+  }
+
+  def declararFuncao(decFuncao: DecFuncao): Unit = {
+    funcoesDeclaradas += (decFuncao.nome -> decFuncao)
+  }
+
+  def recuperarFuncao(nome: String) = funcoesDeclaradas(nome)
 
   def atualiza(variavel : String, valor : Valor): Unit = {
     if(stack.isEmpty) {
@@ -23,6 +36,9 @@ object Ambiente {
     throw VariavelNaoDeclaradaException()
   }
 
+  def novoAmbiente(): Unit = {
+    novoAmbiente(new mutable.HashMap[String, Valor]())
+  }
   def novoAmbiente(ambiente: mutable.HashMap[String, Valor]): Unit = {
     stack.push(ambiente)
   }
@@ -36,4 +52,5 @@ object Ambiente {
   def removeAmbiente(): Unit = {
     stack.pop()
   }
+
 }

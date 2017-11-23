@@ -2,7 +2,8 @@ package br.unb.cic.tp1.mh.ast
 
 import org.scalatest._
 
-class TesteExpSoma extends FlatSpec with Matchers {
+class TesteExpSoma extends FlatSpec with Matchers  {
+
 
   "An integer value 5 + an integer value 10" should "be evaluated to Valor(15)" in {
     val val5  = ValorInteiro(5)

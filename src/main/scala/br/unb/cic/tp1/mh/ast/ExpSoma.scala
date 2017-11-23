@@ -8,4 +8,14 @@ case class ExpSoma(lhs : Expressao, rhs : Expressao) extends Expressao {
 
     return ValorInteiro(v1.valor + v2.valor)
   }
+
+  override def verificaTipo: Tipo = {
+    val t1 = lhs.verificaTipo
+    val t2 = rhs.verificaTipo
+
+    if(t1 == TInt && t2 == TInt) {
+      return TInt()
+    }
+    return TErro()
+  }
 }

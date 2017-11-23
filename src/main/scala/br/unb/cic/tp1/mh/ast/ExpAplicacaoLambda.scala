@@ -7,7 +7,11 @@ import br.unb.cic.tp1.exceptions.ExpressaoInvalida
 case class ExpAplicacaoLambda(exp1 : Expressao, exp2 : Expressao) extends Expressao { 
 
   override def avaliar(): Valor = {
+    //println("- exp1: " + exp1)
     val v1 = exp1.avaliar()
+
+    //println("- ambiente atual: " + Ambiente.ambienteAtual())
+    //println("- Ambiente closure: " + v1.asInstanceOf[Closure].ambiente)
 
     v1 match {
       case Closure(v, c, ambiente) => {
