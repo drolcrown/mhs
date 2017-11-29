@@ -13,6 +13,7 @@ case class ExpRef(variavel : String) extends Expressao {
     catch {
       case ex: NoSuchElementException => throw VariavelNaoDeclaradaException()
     }
-  } 
+  }
 
+  override def verificaTipo: Tipo = this.avaliar().verificaTipo
 }

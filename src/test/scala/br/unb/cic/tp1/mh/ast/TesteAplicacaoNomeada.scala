@@ -7,7 +7,7 @@ class TesteAplicacaoNomeada  extends FlatSpec with Matchers {
 
   behavior of "a named function def inc (x) = x + 1"
 
-  it should "be evaluated to 11 when inc 1 " in {
+  it should "be evaluated to 16 when inc 15 " in {
     val inc = new DecFuncao("inc", "x", ExpSoma(ExpRef("x"), ValorInteiro(1)))
 
     Ambiente.declararFuncao(inc)

@@ -25,5 +25,12 @@ case class ExpAplicacaoLambda(exp1 : Expressao, exp2 : Expressao) extends Expres
       case _             => throw ExpressaoInvalida()
     } 
   }
-  
+
+  override def verificaTipo: Tipo = {
+    val t1 = exp1.verificaTipo
+    t1 match {
+      case TArr(m1, m2) if m2 == exp2.verificaTipo => m2
+      case _ => TErro()
+    }
+  }
 }
